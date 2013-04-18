@@ -1,0 +1,65 @@
+This is set of git hooks, that can be used to check files for coding standards
+and to run unit tests on commited or pushed files.
+
+Here are provided two hooks and install script to make it easy to use them.
+Hooks are:
+    pre-receive: This is a hook, that is invoked in git in case someone tries
+                 to push content to repository from the remote machine.
+                 Obviously :), it should be installed on the central repository
+                 server.
+
+                 When run, it checks pushed files for coding standards and runs
+                 all unit tests on the new version of the project.
+                 In case any of previous actions fail, push will be rejected.
+
+                 NOTE: Coding standards are checked on modified files on all
+                 commits together, if there were some bad code between first and
+                 last commit, it will be ignorred.
+
+                 To install this script you need to go SomeProjectName.git/hooks
+                 directory on the server with central repository and run
+                 two following commands:
+
+                 $ git show HEAD:tools/GitHooks/install.php > install.php
+                 $ php install.php pre-receive
+
+                 Running install script again will update contents, if something
+                 have changed in git repo (including install script).
+
+    pre-commit:  This is a hook, that is invoked in git in case someone tries to
+                 commit staged files. So, again obviously ;), it should be
+                 installed on developers machine.
+
+                 When run, it checks staged files for coding standards. If there
+                 are errors, commit is aborted.
+
+                 To install this script you need to go .git/hooks in
+                 directory in the root of you copy of repository and run
+                 two following commands:
+
+                 $ git show HEAD:tools/GitHooks/install.php > install.php
+                 $ php install.php pre-commit
+
+                 Running install script again will update contents, if something
+                 have changed in git repo (including install script).
+
+
+REQUIRMENTS:
+
+For correct work of coding standard check following is needed:
+    * PHP_CodeSniffer from github (version after Feb 19, 2012)
+        to install it you need to run following commands:
+
+        $ git clone https://github.com/squizlabs/PHP_CodeSniffer.git
+        $ sudo pear install PHP_CodeSniffer/package.xml
+
+        And if you don't have pear installed, you can find out how to install
+        it in google :)
+
+For correct work of unit-tests following is needed:
+    * PHPUnit 3.6 or later
+    * runkit php extension from github
+        to install it you need to run the following commands:
+
+        $ git clone https://github.com/zenovich/runkit.git
+        $ sudo pecl install runkit/package.xml

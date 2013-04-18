@@ -1,0 +1,26 @@
+#!/usr/bin/php
+<?php
+/**
+ * Hook to be run, on pre-commit event.
+ * Called when 'git commit' is performed in current repository.
+ *
+ * Should be installed on local machine for developers to use.
+ *
+ * @author lex
+ */
+
+// basepath is needed to resolve includes correctly
+$basepath = dirname(__FILE__);
+
+// including needed scripts
+include_once $basepath . '/scripts/run-phpcs.php';
+
+// run php code sniffer on the pushed files to check
+// if they satisfy coding standards
+$result = runPhpCs('HEAD', '');
+
+if ($result) {
+    echo 'ERROR: Commit aborted!' . "\n";
+}
+
+exit($result);

@@ -1,0 +1,2 @@
+#!/bin/sh
+phpcs $@ --extensions=php --tab-width=4 --encoding=utf-8

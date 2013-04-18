@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<ruleset name="Harpoon">
+	<description>Harpoon coding standard</description>
+
+	<!--Неиспользуемые параметры-->
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+
+	<!--Ненужное переопределение, когда в методе только (parent::method())-->
+	<rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
+
+	<!--Строка должна кончаться на \n-->
+	<rule ref="Generic.Files.LineEndings">
+		<properties>
+			<property name="eolChar" value="\n"/>
+		</properties>
+	</rule>
+
+	<!--Открывающая скобка функции на след. строке-->
+	<rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
+
+	<!--Константы большими буквами-->
+	<rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
+
+	<!--Константы true,false,null в нижнем регистре-->
+	<rule ref="Generic.PHP.LowerCaseConstant"/>
+
+	<rule ref="Generic.Metrics.NestingLevel">
+		<properties>
+			<property name="absoluteNestingLevel" value="5"/>
+		</properties>
+	</rule>
+
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="120"/>
+			<property name="absoluteLineLimit" value="140"/>
+		</properties>
+	</rule>
+
+	<!--Запрещает комменты Perl "#"-->
+	<rule ref="PEAR.Commenting.InlineComment"/>
+
+	<!--Константы только большими буквами-->
+	<rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
+
+	<!--Название класса с большой буквы-->
+	<rule ref="PEAR.NamingConventions.ValidClassName"/>
+
+	<!--Регулирует однотипные отступы в файле-->
+	<rule ref="PEAR.WhiteSpace.ScopeClosingBrace"/>
+
+	<!--Не дает использовать пробелы при работе с массивом-->
+	<rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
+
+	<!--Запрещает использовать "$this" в статичных методах-->
+	<rule ref="Squiz.Scope.StaticThisUsage"/>
+
+	<!--Проверяет, что свойства класса имеют модификаторы доступа-->
+	<rule ref="Squiz.Scope.MemberVarScope"/>
+
+	<!--Проверяет, что методы класса имеют модификаторы доступа-->
+	<rule ref="Squiz.Scope.MethodScope"/>
+
+	<!--При конкатенации строк не должно быть пробелов-->
+	<!--Заменено на Harpoon_Sniffs_Strings_ConcatenationSpacingSniff-->
+	<!--<rule ref="Squiz.Strings.ConcatenationSpacing"/>-->
+
+	<!--Ключевые слова class, implements и пр в нижнем регистре-->
+	<rule ref="Squiz.Classes.LowercaseClassKeywords"/>
+
+	<!--Self пишется только в нижнем регистре self::-->
+	<rule ref="Squiz.Classes.SelfMemberReference"/>
+
+	<!--FOREACH выглядит так foreach ($var as $k => $v)-->
+	<rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
+
+	<!--if и прочее пишется с маленькой буквы-->
+	<rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
+
+	<!--Ключевое слово function только с маленькой буквы-->
+	<rule ref="Squiz.Functions.LowercaseFunctionKeywords"/>
+
+	<!--Везде,где можно надо писать $var++, а не $var += 1 или $var = $var + 1;-->
+	<rule ref="Squiz.Operators.IncrementDecrementUsage"/>
+
+	<!--and и or запрещены. надо && и ||-->
+	<rule ref="Squiz.Operators.ValidLogicalOperators"/>
+
+	<!--Запрешает eval-->
+	<rule ref="Squiz.PHP.Eval"/>
+
+	<!--Запрещает код после die | exit-->
+	<rule ref="Squiz.PHP.NonExecutableCode"/>
+
+	<!--Нельзя echo ("asdasd")-->
+	<rule ref="Squiz.Strings.EchoedStrings"/>
+
+	<!--Запрещает строки в двойных кавычках-->
+	<!--<rule ref="Squiz.Strings.DoubleQuoteUsage"/>-->
+
+<!--	<rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>-->
+<!--	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>-->
+
+	<!--Запрещены закрывающие теги php-файлов-->
+	<rule ref="Zend.Files.ClosingTag"/>
+
+	<rule ref="PEAR.ControlStructures.ControlSignature"/>
+
+	<!--
+	Еcли вызовы на новой строке, то они должны быть отбиты
+	$bar = new Bar();
+	$bar
+		->bar()
+		->stat();
+	-->
+	<rule ref="PEAR.WhiteSpace.ObjectOperatorIndent"/>
+
+	<!--Отступы в скобках не менее 1 табуляции-->
+	<!--<rule ref="Generic.WhiteSpace.ScopeIndent"/>-->
+
+	<!--
+	Запрещает объявления без скобок
+	if ($var < 0)
+		die();
+	-->
+	<rule ref="Generic.ControlStructures.InlineControlStructure"/>
+
+	<!--
+	Запрещает подобное
+	$var =
+		new Object();
+	-->
+	<rule ref="PEAR.Formatting.MultiLineAssignment"/>
+
+	<!--Пробелы между операторами обязательны-->
+	<rule ref="Squiz.WhiteSpace.OperatorSpacing"/>
+
+	<!--Запрещает ключевое слово global. Работать только через $GLOBALS -->
+	<rule ref="Squiz.PHP.GlobalKeyword"/>
+
+	<!--Запрещает упаковывать функцию в функцию-->
+	<rule ref="Squiz.PHP.InnerFunctions"/>
+</ruleset>

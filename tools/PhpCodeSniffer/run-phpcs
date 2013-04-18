@@ -1,0 +1,6 @@
+#!/bin/sh
+# Run phpcs with project standards on specified dir
+
+FILE=`realpath "$0"`
+DIR=`dirname "$FILE"`
+phpcs --extensions=php --standard=$DIR/Harpoon $1 --tab-width=4 --encoding=utf-8
